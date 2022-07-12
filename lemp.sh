@@ -117,7 +117,7 @@ server {
   listen [::]:80;
   server_name webtest-1.loc;
   index index.html index.php;
-  root /var/www/webtest-ubuntu.loc;
+  root /var/www/${DEF_HOSTNAME};
   location / {
     try_files $uri $uri/ =404;
   }
