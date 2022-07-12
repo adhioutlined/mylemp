@@ -60,13 +60,13 @@ sleep 3s
 
 
 # Keep operating system up to date
-echo -e "${GREEN}[*]${RESET} Update system.."
+#echo -e "${GREEN}[*]${RESET} Update system.."
 
-apt -y update &> ${LOG_FILE}
-check_cmd_status "update system.."
+#apt -y update &> ${LOG_FILE}
+#check_cmd_status "update system.."
 
-apt -y upgrade >> ${LOG_FILE} 2>&1
-check_cmd_status "upgrade system.."
+#apt -y upgrade >> ${LOG_FILE} 2>&1
+#check_cmd_status "upgrade system.."
 
 # test
 # echo $DEF_HOSTNAME
