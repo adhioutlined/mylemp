@@ -69,3 +69,5 @@ check_cmd_status "upgrade system.."
 
 # test
 # echo $DEF_HOSTNAME
+
+#
