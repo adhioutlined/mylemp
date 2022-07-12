@@ -83,7 +83,7 @@ check_cmd_status "install php.."
 # Install PostgreSQL
 echo -e "${GREEN}[*]${RESET} Install PostgreSQL.."
 
-apt install postgresql postgresql-contrib >> ${LOG_FILE} 2>&1
+apt install -y postgresql postgresql-contrib >> ${LOG_FILE} 2>&1
 check_cmd_status "install postgresql postgresql-contrib.."
 
 # Install PostgreSQL
