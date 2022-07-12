@@ -115,7 +115,7 @@ cat <<EOF > ${NGINX_SITEAVAILABLE_DIR}/${DEF_HOSTNAME}.conf
 server {
   listen 80;
   listen [::]:80;
-  server_name webtest-1.loc;
+  server_name ${DEF_HOSTNAME};
   index index.html index.php;
   root /var/www/${DEF_HOSTNAME};
   location / {
