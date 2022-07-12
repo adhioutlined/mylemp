@@ -119,7 +119,7 @@ server {
   index index.html index.php;
   root /var/www/${DEF_HOSTNAME};
   location / {
-    try_files $uri $uri/ =404;
+    try_files \$uri \$uri/ =404;
   }
   location ~ \.php$ {
         include snippets/fastcgi-php.conf;
