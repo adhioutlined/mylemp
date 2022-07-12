@@ -9,10 +9,13 @@ BOLD="\033[01;01m"   # Highlight
 RESET="\033[00m"     # Normal
 
 # Check if running as root
-if [[ "${EUID}" -ne 0 ]]; then
-    echo -e "${RED}[!]${RESET} This script must be ${RED}run as root${RESET}" 1>&2
-    exit 1
-fi
+#if [[ "${EUID}" -ne 0 ]]; then
+#    echo -e "${RED}[!]${RESET} This script must be ${RED}run as root${RESET}" 1>&2
+#    exit 1
+#fi
+
+echo -e "This script will be ${RED}runing as sudoer${RESET}" 1>&2
+exit 1
 
 # Variables
 DEF_HOSTNAME=$(echo $(hostname).loc)
@@ -61,10 +64,10 @@ sleep 3s
 # Keep operating system up to date
 echo -e "${GREEN}[*]${RESET} Update system.."
 
-apt -y update &> ${LOG_FILE}
+sudo apt -y update &> ${LOG_FILE}
 check_cmd_status "update system.."
 
-apt -y upgrade >> ${LOG_FILE} 2>&1
+sudo apt -y upgrade >> ${LOG_FILE} 2>&1
 check_cmd_status "upgrade system.."
 
 # test
