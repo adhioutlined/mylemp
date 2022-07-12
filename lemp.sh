@@ -96,7 +96,7 @@ check_cmd_status "Create www Top Directory.."
 chmod 755 /var/www/${DEF_HOSTNAME} >> ${LOG_FILE} 2>&1
 check_cmd_status "change mode www Top Directory.."
 
-chown -R nginx:nginx /var/www/${DEF_HOSTNAME} >> ${LOG_FILE} 2>&1
+chown -R root:root /var/www/${DEF_HOSTNAME} >> ${LOG_FILE} 2>&1
 check_cmd_status "Change ownership of www Top Directory.."
 
 # Delete default nginx site
