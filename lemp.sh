@@ -86,8 +86,84 @@ echo -e "${GREEN}[*]${RESET} Install PostgreSQL.."
 apt install -y postgresql postgresql-contrib >> ${LOG_FILE} 2>&1
 check_cmd_status "install postgresql postgresql-contrib.."
 
-# Install PostgreSQL
-# echo -e "${GREEN}[*]${RESET} Install PostgreSQL.."
+
+# Create www Top Directory
+echo -e "${GREEN}[*]${RESET} Create www Top Directory.."
+
+mkdir /var/www/${DEF_HOSTNAME} >> ${LOG_FILE} 2>&1
+check_cmd_status "Create www Top Directory.."
+
+chmod 755 /var/www/${DEF_HOSTNAME} >> ${LOG_FILE} 2>&1
+check_cmd_status "change mode www Top Directory.."
+
+chown -R nginx:nginx /var/www/${DEF_HOSTNAME} >> ${LOG_FILE} 2>&1
+check_cmd_status "Change ownership of www Top Directory.."
+
+# Delete default nginx site
+echo -e "${GREEN}[*]${RESET} Delete default nginx site.."
+
+rm -f ${NGINX_SITEENABLE_DIR}/default >> ${LOG_FILE} 2>&1
+check_cmd_status "Delete default nginx site.."
+
+nginx -s reload >> ${LOG_FILE} 2>&1
+check_cmd_status "reload nginx site.."
+
+# Create nginx Top Directory config
+echo -e "${GREEN}[*]${RESET} Create nginx Top Directory config.."
+
+cat <<EOF > ${NGINX_SITEAVAILABLE_DIR}/${DEF_HOSTNAME}.conf
+server {
+  listen 80;
+  listen [::]:80;
+  server_name webtest-1.loc;
+  index index.html index.php;
+  root /var/www/webtest-ubuntu.loc;
+  location / {
+    try_files $uri $uri/ =404;
+  }
+  location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/run/php/php-fpm.sock;
+    }
+}
+EOF
+
+chmod 644 ${NGINX_SITEAVAILABLE_DIR}/${DEF_HOSTNAME}.conf >> ${LOG_FILE} 2>&1
+check_cmd_status "change mode nginx Top Directory config.."
+
+chown -R root:root ${NGINX_SITEAVAILABLE_DIR}/${DEF_HOSTNAME}.conf >> ${LOG_FILE} 2>&1
+check_cmd_status "Change ownership of nginx Top Directory config.."
+
+
+ln -sf ${NGINX_SITEAVAILABLE_DIR}/${DEF_HOSTNAME}.conf ${NGINX_SITEENABLE_DIR}/${DEF_HOSTNAME}.conf >> ${LOG_FILE} 2>&1
+check_cmd_status "link enable nginx config.."
+
+# Create index file
+echo -e "${GREEN}[*]${RESET} Create index file.."
+
+cat <<EOF > /var/www/${DEF_HOSTNAME}/index.php
+<?php
+
+// Show all information, defaults to INFO_ALL
+phpinfo();
+
+// Show just the module information.
+// phpinfo(8) yields identical results.
+phpinfo(INFO_MODULES);
+
+?>
+EOF
+
+# check and reload nginx configuration
+echo -e "${GREEN}[*]${RESET} check and reload nginx configuration.."
+
+nginx -t >> ${LOG_FILE} 2>&1
+check_cmd_status "check nginx configuration.."
+
+systemctl reload nginx >> ${LOG_FILE} 2>&1
+check_cmd_status "reload nginx service.."
+
+
 
 
 # test
