@@ -15,7 +15,6 @@ RESET="\033[00m"     # Normal
 #fi
 
 echo -e "This script will be ${RED}runing as sudoer${RESET}" 1>&2
-exit 1
 
 # Variables
 DEF_HOSTNAME=$(echo $(hostname).loc)
