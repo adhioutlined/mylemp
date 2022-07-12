@@ -47,21 +47,21 @@ LOG_FILE="install_log.txt"
 
 check_cmd_status() {
     if [[ "$?" -ne 0 ]]; then
-        echo -e "\n"
-        echo -e "${RED}[!]${RESET} There was an ${RED}issue on $1 ${RESET}" 1>&2
-        echo -e "${YELLOW}[i]${RESET} Check log file: ${LOG_FILE}" 1>&2
+        sudo echo -e "\n"
+        sudo echo -e "${RED}[!]${RESET} There was an ${RED}issue on $1 ${RESET}" 1>&2
+        sudo echo -e "${YELLOW}[i]${RESET} Check log file: ${LOG_FILE}" 1>&2
         exit 1
     fi
 }
 
 # Start Server Installation
-echo -e "\n"
-echo -e "${GREEN}[*]${RESET} Start Installation.."
+sudo echo -e "\n"
+sudo echo -e "${GREEN}[*]${RESET} Start Installation.."
 sleep 3s
 
 
 # Keep operating system up to date
-echo -e "${GREEN}[*]${RESET} Update system.."
+sudo echo -e "${GREEN}[*]${RESET} Update system.."
 
 sudo apt -y update &> ${LOG_FILE}
 check_cmd_status "update system.."
