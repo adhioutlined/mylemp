@@ -13,3 +13,10 @@ if [[ "${EUID}" -ne 0 ]]; then
     echo -e "${RED}[!]${RESET} This script must be ${RED}run as root${RESET}" 1>&2
     exit 1
 fi
+
+# Variables
+# HOSTNAME=$(hostname)
+DEF_HOSTNAME=$(echo $(hostname).loc)
+
+# test
+echo $DEF_HOSTNAME
