@@ -69,10 +69,10 @@ apt -y upgrade >> ${LOG_FILE} 2>&1
 check_cmd_status "upgrade system.."
 
 # Install Nginx, Net Tools, Git, Zip
-echo -e "${GREEN}[*]${RESET} Install nginx wget curl net-tools git unzip htop nano apache2-utils cron software-properties-common .."
+echo -e "${GREEN}[*]${RESET} Install nginx wget curl net-tools git unzip htop nano apache2-utils cron software-properties-common.."
 
 apt -y install nginx wget curl net-tools git unzip htop nano apache2-utils cron software-properties-common >> ${LOG_FILE} 2>&1
-check_cmd_status "install nginx wget curl net-tools git unzip htop nano apache2-utils cron software-properties-common .."
+check_cmd_status "install nginx wget curl net-tools git unzip htop nano apache2-utils cron software-properties-common.."
 
 # Install PHP
 echo -e "${GREEN}[*]${RESET} Install PHP.."
@@ -80,6 +80,14 @@ echo -e "${GREEN}[*]${RESET} Install PHP.."
 apt install -y php-{fpm,mysql,mbstring,xml,zip,soap,gd,curl,imagick,cli,bcmath,redis} >> ${LOG_FILE} 2>&1
 check_cmd_status "install php.."
 
+# Install PostgreSQL
+echo -e "${GREEN}[*]${RESET} Install PostgreSQL.."
+
+apt install postgresql postgresql-contrib >> ${LOG_FILE} 2>&1
+check_cmd_status "install postgresql postgresql-contrib.."
+
+# Install PostgreSQL
+# echo -e "${GREEN}[*]${RESET} Install PostgreSQL.."
 
 
 # test
