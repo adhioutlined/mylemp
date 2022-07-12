@@ -9,12 +9,11 @@ BOLD="\033[01;01m"   # Highlight
 RESET="\033[00m"     # Normal
 
 # Check if running as root
-#if [[ "${EUID}" -ne 0 ]]; then
-#    echo -e "${RED}[!]${RESET} This script must be ${RED}run as root${RESET}" 1>&2
-#    exit 1
-#fi
+if [[ "${EUID}" -ne 0 ]]; then
+    echo -e "${RED}[!]${RESET} This script must be ${RED}run as root${RESET}" 1>&2
+    exit 1
+fi
 
-echo -e "This script will be ${RED}runing as sudoer${RESET}" 1>&2
 
 # Variables
 DEF_HOSTNAME=$(echo $(hostname).loc)
@@ -47,26 +46,26 @@ LOG_FILE="install_log.txt"
 
 check_cmd_status() {
     if [[ "$?" -ne 0 ]]; then
-        sudo echo -e "\n"
-        sudo echo -e "${RED}[!]${RESET} There was an ${RED}issue on $1 ${RESET}" 1>&2
-        sudo echo -e "${YELLOW}[i]${RESET} Check log file: ${LOG_FILE}" 1>&2
+        echo -e "\n"
+        echo -e "${RED}[!]${RESET} There was an ${RED}issue on $1 ${RESET}" 1>&2
+        echo -e "${YELLOW}[i]${RESET} Check log file: ${LOG_FILE}" 1>&2
         exit 1
     fi
 }
 
 # Start Server Installation
-sudo echo -e "\n"
-sudo echo -e "${GREEN}[*]${RESET} Start Installation.."
+echo -e "\n"
+echo -e "${GREEN}[*]${RESET} Start Installation.."
 sleep 3s
 
 
 # Keep operating system up to date
-sudo echo -e "${GREEN}[*]${RESET} Update system.."
+echo -e "${GREEN}[*]${RESET} Update system.."
 
-sudo apt -y update &> ${LOG_FILE}
+apt -y update &> ${LOG_FILE}
 check_cmd_status "update system.."
 
-sudo apt -y upgrade >> ${LOG_FILE} 2>&1
+apt -y upgrade >> ${LOG_FILE} 2>&1
 check_cmd_status "upgrade system.."
 
 # test
