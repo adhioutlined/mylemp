@@ -68,5 +68,11 @@ check_cmd_status "update system.."
 apt -y upgrade >> ${LOG_FILE} 2>&1
 check_cmd_status "upgrade system.."
 
+# Install Nginx, Net Tools, Git, Zip
+echo -e "${GREEN}[*]${RESET} Install nginx wget curl net-tools git unzip htop nano apache2-utils cron software-properties-common .."
+
+apt -y install nginx wget curl net-tools git unzip htop nano apache2-utils cron software-properties-common >> ${LOG_FILE} 2>&1
+check_cmd_status "install nginx wget curl net-tools git unzip htop nano apache2-utils cron software-properties-common .."
+
 # test
 # echo $DEF_HOSTNAME
