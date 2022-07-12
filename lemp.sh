@@ -77,7 +77,7 @@ check_cmd_status "install nginx wget curl net-tools git unzip htop nano apache2-
 # Install PHP
 echo -e "${GREEN}[*]${RESET} Install PHP.."
 
-apt install -y php-{fpm,mysql,mbstring,xml,zip,soap,gd,curl,imagick,cli,bcmath,redis} >> ${LOG_FILE} 2>&1
+apt install -y php-{fpm,pgsql,mbstring,xml,zip,soap,gd,curl,imagick,cli,bcmath,redis} >> ${LOG_FILE} 2>&1
 check_cmd_status "install php.."
 
 # Install PostgreSQL
@@ -153,6 +153,7 @@ phpinfo(INFO_MODULES);
 
 ?>
 EOF
+
 
 # check and reload nginx configuration
 echo -e "${GREEN}[*]${RESET} check and reload nginx configuration.."
