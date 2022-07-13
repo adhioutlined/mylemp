@@ -142,18 +142,8 @@ check_cmd_status "link enable nginx config.."
 # Create index file
 echo -e "${GREEN}[*]${RESET} Create index file.."
 
-cat <<EOF > /var/www/${DEF_HOSTNAME}/index.php
-<?php
-
-// Show all information, defaults to INFO_ALL
-phpinfo();
-
-// Show just the module information.
-// phpinfo(8) yields identical results.
-phpinfo(INFO_MODULES);
-
-?>
-EOF
+git clone https://github.com/adhioutlined/minimalist-landing-page.git /var/www/${DEF_HOSTNAME} >> ${LOG_FILE} 2>&1
+check_cmd_status "create index file.."
 
 
 # check and reload nginx configuration
