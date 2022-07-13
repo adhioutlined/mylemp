@@ -91,7 +91,12 @@ check_cmd_status "install postgresql postgresql-contrib.."
 # Create www Top Directory
 echo -e "${GREEN}[*]${RESET} Create www Top Directory.."
 
-mkdir /var/www/${DEF_HOSTNAME} >> ${LOG_FILE} 2>&1
+if [ -d "/var/www/${DEF_HOSTNAME}" ] 
+then
+    echo "Directory /path/to/dir exists." 
+else
+    mkdir /var/www/${DEF_HOSTNAME} >> ${LOG_FILE} 2>&1
+fi
 check_cmd_status "Create www Top Directory.."
 
 chmod 755 /var/www/${DEF_HOSTNAME} >> ${LOG_FILE} 2>&1
