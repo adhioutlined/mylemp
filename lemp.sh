@@ -93,7 +93,7 @@ echo -e "${GREEN}[*]${RESET} Create www Top Directory.."
 
 if [ -d "/var/www/${DEF_HOSTNAME}" ] 
 then
-    echo "Directory /path/to/dir exists." 
+    echo "Directory exists." 
 else
     mkdir /var/www/${DEF_HOSTNAME} >> ${LOG_FILE} 2>&1
 fi
@@ -147,7 +147,12 @@ check_cmd_status "link enable nginx config.."
 # Create index file
 echo -e "${GREEN}[*]${RESET} Create index file.."
 
-git clone https://github.com/adhioutlined/minimalist-landing-page.git /var/www/${DEF_HOSTNAME} >> ${LOG_FILE} 2>&1
+if [ -f "/var/www/${DEF_HOSTNAME}/index.php" ] 
+then
+    echo "file exist." 
+else
+    git clone https://github.com/adhioutlined/minimalist-landing-page.git /var/www/${DEF_HOSTNAME} >> ${LOG_FILE} 2>&1
+fi
 check_cmd_status "create index file.."
 
 
