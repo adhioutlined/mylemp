@@ -54,6 +54,7 @@ check_cmd_status() {
 }
 
 # Start Server Installation
+echo -e "${GREEN}Holla, this Force will install NGINX, PHP, and POSTGRESQL${RESET}\n"
 echo -e "\n"
 echo -e "${GREEN}[*]${RESET} Start Installation.."
 sleep 3s
@@ -164,8 +165,9 @@ check_cmd_status "check nginx configuration.."
 systemctl reload nginx >> ${LOG_FILE} 2>&1
 check_cmd_status "reload nginx service.."
 
-
-
+# see ya
+echo -e "${GREEN}Installation Finished, ${BOLD}MAY THE FORCE BE WITH YOU${RESET}\n"
+sleep 3s
 
 # test
 # echo $DEF_HOSTNAME
