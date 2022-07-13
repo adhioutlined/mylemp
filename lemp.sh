@@ -54,7 +54,7 @@ check_cmd_status() {
 }
 
 # Start Server Installation
-echo -e "${GREEN}Holla, this Force will install NGINX, PHP, and POSTGRESQL${RESET}\n"
+echo -e "${GREEN}Holla, ${RED}Buckle UP !! ${GREEN}I'll take you Into NGINX,PHP,POSTGRESQL planet trough Hyperspace${RESET}\n"
 echo -e "\n"
 echo -e "${GREEN}[*]${RESET} Start Installation.."
 sleep 3s
